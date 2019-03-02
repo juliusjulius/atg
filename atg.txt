@@ -1,0 +1,57 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+void potried(vector <int> &v);
+
+void potried(vector <int> &v) {
+	sort(v.begin(), v.end(), greater<int>());
+}
+
+void vypis(const vector <int> &v);
+
+void vypis(const vector <int> &v) {
+	for (int vrchol : v)
+	{
+		cout << vrchol << " ";
+	}
+	cout << endl;
+}
+
+int main() {
+	bool koniec = false;
+	vector <int> Vrcholy{ 7,6,2,4,1,5,3,2,1,1 };                   //7,6,2,4,1,5,3,2,1,1
+	potried(Vrcholy);
+	vypis(Vrcholy);
+
+	while (Vrcholy.at(0) != 0 || koniec != true) {
+		for (int i = 1; i < Vrcholy.at(0) + 1; i++)
+		{
+			if (Vrcholy.at(i) != 0) {
+				Vrcholy.at(i) -= 1;
+			}
+			else {
+				Vrcholy.at(i) -= 1;
+				koniec = true;
+				break;
+			}
+		}
+
+		Vrcholy.erase(Vrcholy.begin());
+		vypis(Vrcholy);
+		potried(Vrcholy);
+	}
+	
+	if (!koniec) {
+		cout << endl << "Graf je mozne zostrojit.";
+	}
+	else {
+		cout << endl << "Graf nieje mozne zostrojit";
+	}
+
+
+	return 0;
+
+}
